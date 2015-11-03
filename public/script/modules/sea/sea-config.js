@@ -4,9 +4,14 @@
 
 
 seajs.config({
-    alias : {
-        'jquery' : 'jquery/jquery-2.1.4.js',
-        exports : 'jQuery'
+    base: "../../public/script/",
+    alias: {
+        "jquery": "modules/jquery/jquery-2.1.4.js",
+        "template" : "modules/arttemplate/template.js"
+    },
+    paths : {
+        "lib" : "modules/",
+        "css" : "../css/"
     }
 });
 

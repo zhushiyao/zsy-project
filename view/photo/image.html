@@ -8,46 +8,27 @@
 <body>
 
 
-<div class="content">
-    <img class="place1" src="../../public/imgs/photo/1.jpg">
-
-    <img class="place2" src="../../public/imgs/photo/2.jpg">
-
-    <img class="place3" src="../../public/imgs/photo/3.jpg">
-
-    <img class="place4" src="../../public/imgs/photo/4.jpg">
-
-    <img class="place5" src="../../public/imgs/photo/5.jpg">
-
-    <img class="place6" src="../../public/imgs/photo/6.jpg">
+<div class="content" id="photoId">
+        <!--<img class="place1" src="../../public/imgs/photo/1.jpg">-->
+        <!--<img class="place2" src="../../public/imgs/photo/2.jpg">-->
+        <!--<img class="place3" src="../../public/imgs/photo/3.jpg">-->
+        <!--<img class="place4" src="../../public/imgs/photo/4.jpg">-->
+        <!--<img class="place5" src="../../public/imgs/photo/5.jpg">-->
+        <!--<img class="place6" src="../../public/imgs/photo/6.jpg">-->
 </div>
 
-<script src="../../public/script/modules/jquery/jquery-2.1.4.js"></script>
+
+<div style="">
+
+
+</div>
+
+
+
+<script src="../../public/script/modules/sea/sea.js"></script>
+<script src="../../public/script/modules/sea/sea-config.js"></script>
 <script>
-
-    $(function () {
-       var imgs = $(".content img");
-//    debugger;
-        var index = 0;
-        var silde = function () {
-            $(".content img[class^='place']").each(function () {
-
-                var cln = $(this).attr("class").match(/place[0-9]/)[0];
-                var ix = cln.split("place")[1];
-                if(ix == 6){
-                    ix = 1;
-                }else{
-                    ix ++;
-                }
-                $(this).addClass("place" + ix);
-                $(this).removeClass(cln);
-                console.log(ix);
-            });
-        };
-        silde();
-        setInterval(function () { silde(); },2000)
-    });
-
+    seajs.use("photo/photo");
 </script>
 
 </body>
