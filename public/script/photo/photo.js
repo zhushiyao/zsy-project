@@ -32,16 +32,16 @@ define(function (require, exports, module) {
         //}, 3000);
 
         new photo({
-            //maxshow : 7,
-            //imgs : [
-            //    "../../public/imgs/photo/1.jpg",
-            //    "../../public/imgs/photo/2.jpg",
-            //    "../../public/imgs/photo/3.jpg",
-            //    "../../public/imgs/photo/4.jpg",
-            //    "../../public/imgs/photo/5.jpg",
-            //    "../../public/imgs/photo/6.jpg",
-            //    "../../public/imgs/photo/7.jpg"
-            //]
+            maxshow : 7,
+            imgs : [
+                "../../public/imgs/photo/1.jpg",
+                "../../public/imgs/photo/2.jpg",
+                "../../public/imgs/photo/3.jpg",
+                "../../public/imgs/photo/4.jpg",
+                "../../public/imgs/photo/5.jpg",
+                "../../public/imgs/photo/6.jpg",
+                "../../public/imgs/photo/7.jpg"
+            ]
         });
     });
 
