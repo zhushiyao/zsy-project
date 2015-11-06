@@ -59,7 +59,8 @@ define(function (require, exports, module) {
             id : "photoId",
             imgs : [],
             isTimer : true,//是否启动轮播定时器
-            runTime : 3000//轮播定时器默认时间
+            runTime : 3000,//轮播定时器默认时间
+            isNav : true //是否显示切换按钮
         },
         _timeObj : {},//定时器对象
         _styles : [],//用于存放图片所有样式
@@ -81,7 +82,6 @@ define(function (require, exports, module) {
                 if(ix >= ops.length){
                     ix = 0;
                 }
-                console.log("img",this.options.imgs[i]);
                 img.src=this.options.imgs[i] || "";
                 img.style.top =ops[ix].top + "px";
                 img.style.left =ops[ix].left + "px";
@@ -89,14 +89,10 @@ define(function (require, exports, module) {
                 img.style.width =ops[ix].width + "px";
                 img.style.zIndex =ops[ix].zIndex;
                 //设置鼠标悬停时停止图片轮播
-                img.onmouseover = function () {
-                    if(_this.options.isTimer){clearInterval(_this._timeObj);}
-                };
-                img.onmouseout = function () {
-                    if(_this.options.isTimer){_this._startTimer();};
-                }
+                this._setMouseFn(img,this);
                 content.appendChild(img);
             }
+            this._initNav(content);
             this._startTimer();
         },
         _resize : function (w,h) {
@@ -186,7 +182,7 @@ define(function (require, exports, module) {
             }
         },
         _getImgStyle : function () {
-            var objs = document.getElementById(this.options.id).children;
+            var objs = document.getElementById(this.options.id).getElementsByTagName("img");
             var styles = [];
             for(var i =0;i<objs.length;i++){
                 styles.push({
@@ -200,6 +196,45 @@ define(function (require, exports, module) {
             }
             this._imgObjs = objs;
             return styles;
+        },
+        _initNav : function (content) {
+            var _this = this;
+            if(this.options.isNav){
+                var leftD = document.createElement("div");
+                leftD.className = "nav-photo np-left";
+                var leftT = document.createElement("div");
+                leftT.className = "triangle-left";
+                leftD.appendChild(leftT);
+                _this._setMouseFn(leftD,_this);
+                leftD.onclick = function () {
+                    _this.move("right")
+                }
+                var rightD = document.createElement("div");
+                rightD.className = "nav-photo np-right";
+                var rightT = document.createElement("div");
+                rightT.className = "triangle-right";
+                rightD.appendChild(rightT);
+                _this._setMouseFn(rightD,_this);
+                rightD.onclick = function () {
+                    _this.move("left")
+                }
+                content.appendChild(leftD);
+                content.appendChild(rightD);
+            }
+        },
+        _setMouseFn : function (obj, _this) {
+            //设置鼠标悬停时停止图片轮播
+            obj.onmouseover = function () {
+                if (_this.options.isTimer) {
+                    clearInterval(_this._timeObj);
+                }
+            };
+            obj.onmouseout = function () {
+                if (_this.options.isTimer) {
+                    _this._startTimer();
+                }
+                ;
+            }
         }
 
     }
